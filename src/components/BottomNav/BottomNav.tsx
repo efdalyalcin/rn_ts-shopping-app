@@ -1,38 +1,43 @@
 import React from 'react';
 import { BottomNavigation, Text } from 'react-native-paper';
+import ShopIcon from 'assets/icons/shopping_cart.svg';
 
-const MusicRoute = () => <Text>Music</Text>;
+const StoreRoute = () => <Text>Store</Text>;
 
-const AlbumsRoute = () => <Text>Albums</Text>;
+const FavoritesRoute = () => <Text>Favorites</Text>;
 
 const RecentsRoute = () => <Text>Recents</Text>;
 
-const NotificationsRoute = () => <Text>Notifications</Text>;
+const CartRoute = () => <Text>Cart</Text>;
 
-const MyComponent = () => {
+const BottomNav = () => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     {
-      key: 'music',
+      key: 'store',
+      title: 'Store',
+      focusedIcon: 'home',
+      unfocusedIcon: 'home-outline',
+    },
+    {
+      key: 'favorites',
       title: 'Favorites',
       focusedIcon: 'heart',
       unfocusedIcon: 'heart-outline',
     },
-    { key: 'albums', title: 'Albums', focusedIcon: 'album' },
     { key: 'recents', title: 'Recents', focusedIcon: 'history' },
     {
-      key: 'notifications',
-      title: 'Notifications',
-      focusedIcon: 'bell',
-      unfocusedIcon: 'bell-outline',
+      key: 'cart',
+      title: 'Cart',
+      focusedIcon: ShopIcon,
     },
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
-    music: MusicRoute,
-    albums: AlbumsRoute,
+    store: StoreRoute,
+    favorites: FavoritesRoute,
     recents: RecentsRoute,
-    notifications: NotificationsRoute,
+    cart: CartRoute,
   });
 
   return (
@@ -44,4 +49,4 @@ const MyComponent = () => {
   );
 };
 
-export default MyComponent;
+export default BottomNav;

@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Home from './src/pages/Home/Home';
+import { colorStyles } from 'src/styles/colors';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -13,8 +14,8 @@ export default function App() {
       <Stack.Navigator
         initialRouteName="Home"
         screenOptions={{
-          headerTintColor: 'orange',
-          headerStyle: { backgroundColor: 'gray' },
+          headerTintColor: colorStyles.main,
+          headerStyle: { backgroundColor: colorStyles.background },
         }}
       >
         <Stack.Screen

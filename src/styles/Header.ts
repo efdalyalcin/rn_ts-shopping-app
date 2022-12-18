@@ -1,5 +1,5 @@
 export const HeaderStyle = {
-  color: '',
-  fontSize: '',
+  color: '#C0DEFF',
+  fontSize: 32,
   headerSize: 64,
 };

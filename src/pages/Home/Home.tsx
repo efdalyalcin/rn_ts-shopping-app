@@ -3,14 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { styles } from './Home.style';
 import { Button, Card, Paragraph, Title } from 'react-native-paper';
 import BottomNav from '../../components/BottomNav/BottomNav';
-import { HeaderStyle } from '../../styles/Header';
+import { HeaderStyle } from '../../styles/header';
 import { getProducts, IProduct } from 'src/services/getProducts';
 
 const height = Dimensions.get('screen').height - HeaderStyle.headerSize - 80;
 
-const renderItem = ({ item }) => {
+const renderItem = ({ item, index }) => {
   return (
-    <Card>
+    <Card mode="elevated" style={styles.flatListItems}>
       <Card.Title title={item.title} />
       <Card.Content>
         <Paragraph>{item.description}</Paragraph>

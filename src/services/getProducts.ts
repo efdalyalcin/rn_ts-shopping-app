@@ -1,19 +1,6 @@
 import axios from 'axios';
+import { IProduct } from 'src/shared/productInterface';
 export const BASE_URL = 'https://fakestoreapi.com';
-
-export interface IProductRate {
-  count: number;
-  rate: number;
-}
-export interface IProduct {
-  category: string;
-  description: string;
-  id: number;
-  image: string;
-  price: number;
-  rating: IProductRate;
-  title: string;
-}
 
 export const getProducts = () => {
   return new Promise<IProduct>((resolve, reject) => {

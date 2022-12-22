@@ -1,6 +1,9 @@
 import React from 'react';
 import { BottomNavigation, Text } from 'react-native-paper';
-import ShopIcon from 'assets/icons/shopping_cart.svg';
+// @ts-ignore
+import ShopIcon from 'assets/icons/shopping_cart.png';
+import Home from 'src/pages/Home/Home';
+import Store from 'src/pages/Store/Store';
 
 const StoreRoute = () => <Text>Store</Text>;
 
@@ -34,7 +37,7 @@ const BottomNav = () => {
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
-    store: StoreRoute,
+    store: Store,
     favorites: FavoritesRoute,
     recents: RecentsRoute,
     cart: CartRoute,

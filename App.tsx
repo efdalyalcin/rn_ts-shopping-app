@@ -15,14 +15,16 @@ export default function App() {
         initialRouteName="Home"
         screenOptions={{
           headerTintColor: colorStyles.main,
-          headerStyle: { backgroundColor: colorStyles.background },
+          headerStyle: {
+            backgroundColor: colorStyles.background,
+          },
         }}
       >
         <Stack.Screen
           name="Home"
           component={Home}
           options={{
-            title: 'Home Page',
+            title: 'Store',
             headerTitleStyle: { fontSize: 30 },
           }}
         />

@@ -19,6 +19,7 @@
     "react-native": "0.70.5",
     "react-native-bootstrap": "^0.1.0",
     "react-native-dynamic-vector-icons": "^1.2.0",
+    "react-native-flipper": "^0.176.1",
     "react-native-imaged-card-view": "^0.0.11",
     "react-native-paper": "^5.0.1",
     "react-native-star-review": "^0.0.23",
@@ -35,6 +36,7 @@
     "@types/react-native": "^0.70.8",
     "@types/react-test-renderer": "^18.0.0",
     "babel-plugin-module-resolver": "^4.1.0",
+    "react-native-flipper-zustand": "^2.0.1",
     "typescript": "^4.9.4"
   },
   "private": true

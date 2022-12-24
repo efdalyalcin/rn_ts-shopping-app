@@ -7,6 +7,8 @@ import { styles } from './Store.style';
 import { HeaderStyle } from 'src/styles/header';
 // @ts-ignore
 import favoritesIcon from 'assets/icons/favorite_border.png';
+import ShopCard from 'src/components/ShopCard/ShopCard';
+import { IProduct } from 'src/shared/productInterface';
 
 const height = Dimensions.get('screen').height - HeaderStyle.headerSize - 80;
 
@@ -19,31 +21,40 @@ export default function Store() {
     getProducts().then((res) => setShopList(res));
   }, []);
 
-  console.log(favorites);
+  console.log(shopList);
 
   const renderItem = ({ item, index }) => {
     const isInFavorites = favorites.find((favItem) => favItem.id === item.id);
     return (
-      <Card mode="elevated" style={styles.flatListItems}>
-        <Card.Title title={item.title} />
-        <Card.Content>
-          <Paragraph>{item.description}</Paragraph>
-        </Card.Content>
-        <Card.Cover source={{ uri: item.image }} resizeMode="contain" />
-        <Card.Actions>
-          <Button
-            onPress={
-              isInFavorites
-                ? () => removeFromFavorites(item.id)
-                : () => addToFavorites(item)
-            }
-          >
-            Add to Favorites
-            {/* <Image source={favoritesIcon}></Image> */}
-          </Button>
-          <Button>Add to Cart</Button>
-        </Card.Actions>
-      </Card>
+      <>
+        <ShopCard
+          title={shopList[0]?.title}
+          description={shopList[0]?.description}
+          pic={shopList[0]?.image}
+        />
+        {
+          //   <Card mode="elevated" style={styles.flatListItems}>
+          //   <Card.Title title={item.title} />
+          //   <Card.Content>
+          //     <Paragraph>{item.description}</Paragraph>
+          //   </Card.Content>
+          //   <Card.Cover source={{ uri: item.image }} resizeMode="contain" />
+          //   <Card.Actions>
+          //     <Button
+          //       onPress={
+          //         isInFavorites
+          //           ? () => removeFromFavorites(item.id)
+          //           : () => addToFavorites(item)
+          //       }
+          //     >
+          //       Add to Favorites
+          //       {/* <Image source={favoritesIcon}></Image> */}
+          //     </Button>
+          //     <Button>Add to Cart</Button>
+          //   </Card.Actions>
+          // </Card>
+        }
+      </>
     );
   };
 

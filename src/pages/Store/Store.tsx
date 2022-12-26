@@ -28,9 +28,9 @@ export default function Store() {
     return (
       <>
         <ShopCard
-          title={shopList[0]?.title}
-          description={shopList[0]?.description}
-          pic={shopList[0]?.image}
+          title={item.title}
+          description={item.description}
+          pic={item.image}
         />
         {
           //   <Card mode="elevated" style={styles.flatListItems}>

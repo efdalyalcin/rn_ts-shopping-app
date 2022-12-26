@@ -1,6 +1,19 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+  container: {
+    padding: 12,
+  },
+  card: {
+    borderTopColor: 'black',
+    borderTopWidth: 1,
+  },
+  shadowProp: {
+    shadowColor: '#171717',
+    shadowOffset: { width: -2, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+  },
   favorite: {},
   title: {
     fontSize: 20,

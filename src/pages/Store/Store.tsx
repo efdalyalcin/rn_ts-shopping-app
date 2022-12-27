@@ -8,7 +8,6 @@ import { HeaderStyle } from 'src/styles/header';
 // @ts-ignore
 import favoritesIcon from 'assets/icons/favorite_border.png';
 import ShopCard from 'src/components/ShopCard/ShopCard';
-import { IProduct } from 'src/shared/productInterface';
 
 const height = Dimensions.get('screen').height - HeaderStyle.headerSize - 80;
 
@@ -21,7 +20,7 @@ export default function Store() {
     getProducts().then((res) => setShopList(res));
   }, []);
 
-  console.log(shopList);
+  // console.log(shopList);
 
   const renderItem = ({ item, index }) => {
     const isInFavorites = favorites.find((favItem) => favItem.id === item.id);

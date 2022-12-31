@@ -2,6 +2,8 @@ import { View, Text, Image, Pressable } from 'react-native';
 import React from 'react';
 import { styles } from './ShopCard.style';
 import { Shadow } from 'react-native-shadow-2';
+import FavoriteIcon from 'assets/icons/favorite_filled.svg';
+import { Svg } from 'react-native-svg';
 
 type Props = {
   title: string;
@@ -15,10 +17,7 @@ const ShopCard = ({ title, description, pic }: Props) => {
       <Shadow>
         <View style={[styles.card, styles.shadowProp]}>
           <Pressable style={styles.favorite}>
-            <Image
-              source={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }}
-              style={{ height: 10, width: 10 }}
-            />
+            <FavoriteIcon width={200} height={200} />
           </Pressable>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.desc} numberOfLines={3} ellipsizeMode="tail">

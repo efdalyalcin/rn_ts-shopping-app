@@ -5,7 +5,7 @@ import { IProduct } from 'src/shared/productInterface';
 type IFavoriteProductsState = {
   favorites: IProduct[];
   addToFavorites: (product: IProduct) => void;
-  removeFromFavorites: (id: number) => void;
+  removeFromFavorites: (product: IProduct) => void;
 };
 
 const useFavoriteProducts = create<IFavoriteProductsState>(
@@ -20,9 +20,9 @@ const useFavoriteProducts = create<IFavoriteProductsState>(
         favorites: [...state.favorites, product],
       }));
     },
-    removeFromFavorites: (id) => {
+    removeFromFavorites: (product) => {
       set((state) => ({
-        favorites: state.favorites.filter((product) => product.id !== id),
+        favorites: state.favorites.filter((fav) => product.id !== fav.id),
       }));
     },
   })

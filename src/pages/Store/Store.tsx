@@ -23,13 +23,13 @@ export default function Store() {
   // console.log(shopList);
 
   const renderItem = ({ item, index }) => {
-    const isInFavorites = favorites.find((favItem) => favItem.id === item.id);
     return (
       <>
         <ShopCard
           title={item.title}
           description={item.description}
           pic={item.image}
+          item={item}
         />
         {
           //   <Card mode="elevated" style={styles.flatListItems}>

@@ -2,7 +2,7 @@ import { Dimensions, StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   card: {
-    padding: 8,
+    padding: 16,
     borderRadius: 8,
   },
   shadowProp: {
@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
   cardPic: {
     marginTop: 8,
     height: 200,
-    width: Dimensions.get('screen').width - 40,
+    width: Dimensions.get('screen').width - 50,
     resizeMode: 'contain',
   },
 });

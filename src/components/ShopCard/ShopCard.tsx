@@ -9,6 +9,8 @@ import NotFavoriteIcon from 'assets/icons/favorite_outlined.svg';
 import { Svg } from 'react-native-svg';
 import { IProduct } from 'src/shared/productInterface';
 import useFavoriteProducts from 'src/store/favoriteProducts';
+import useCart from 'src/store/cart';
+import { Button } from 'react-native-paper';
 
 type Props = {
   title: string;
@@ -21,7 +23,10 @@ const ShopCard = ({ title, description, pic, item }: Props) => {
   const { favorites, addToFavorites, removeFromFavorites } =
     useFavoriteProducts();
 
+  const { cart, addToCart } = useCart();
   const inFavorites = favorites.find((favItem) => favItem?.id === item.id);
+
+  console.log(cart);
 
   return (
     <View style={{ padding: 10 }}>
@@ -32,12 +37,7 @@ const ShopCard = ({ title, description, pic, item }: Props) => {
               style={styles.favorite}
               onPress={() => removeFromFavorites(item)}
             >
-              <FavoriteIcon
-                width={24}
-                height={24}
-                fill={'red'}
-                style={styles.favIcon}
-              />
+              <FavoriteIcon width={24} height={24} fill={'red'} />
             </Pressable>
           ) : (
             <Pressable
@@ -52,6 +52,7 @@ const ShopCard = ({ title, description, pic, item }: Props) => {
             {description}
           </Text>
           <Image style={styles.cardPic} source={{ uri: pic }} />
+          <Button onPress={() => addToCart(item)}>Add to Cart</Button>
         </View>
       </Shadow>
     </View>

@@ -11,7 +11,10 @@ export const styles = StyleSheet.create({
     // shadowOpacity: 0.2,
     // shadowRadius: 3,
   },
-  favorite: {},
+  favorite: {
+    alignItems: 'flex-end',
+    padding: 8,
+  },
   title: {
     fontSize: 20,
     fontWeight: 'bold',

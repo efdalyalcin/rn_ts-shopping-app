@@ -25,6 +25,7 @@
     "react-native-shadow-2": "^7.0.6",
     "react-native-star-review": "^0.0.23",
     "react-native-svg": "^13.6.0",
+    "react-native-svg-transformer": "^1.0.0",
     "react-native-vector-icons": "^9.2.0",
     "react-native-web": "~0.18.9",
     "react-number-format": "^5.1.2",

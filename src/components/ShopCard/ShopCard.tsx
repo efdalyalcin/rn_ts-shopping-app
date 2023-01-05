@@ -1,4 +1,4 @@
-import { View, Text, Image, Pressable, Button } from 'react-native';
+import { View, Text, Image, Pressable, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { styles } from './ShopCard.style';
 import { Shadow } from 'react-native-shadow-2';
@@ -10,7 +10,7 @@ import { Svg } from 'react-native-svg';
 import { IProduct } from 'src/shared/productInterface';
 import useFavoriteProducts from 'src/store/favoriteProducts';
 import useCart from 'src/store/cart';
-// import { Button } from 'react-native-paper';
+import CardButton from '../CardButton/CardButton';
 
 type Props = {
   title: string;
@@ -52,9 +52,7 @@ const ShopCard = ({ title, description, pic, item }: Props) => {
             {description}
           </Text>
           <Image style={styles.cardPic} source={{ uri: pic }} />
-          <Pressable onPress={() => addToCart(item)} style={styles.addButton}>
-            <Text style={styles.addButtonText}>Add to Cart</Text>
-          </Pressable>
+          <CardButton item={item} />
         </View>
       </Shadow>
     </View>

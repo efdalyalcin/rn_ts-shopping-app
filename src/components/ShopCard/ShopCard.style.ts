@@ -1,4 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native';
+import { colorStyles } from 'src/styles/colors';
 
 export const styles = StyleSheet.create({
   card: {
@@ -28,4 +29,13 @@ export const styles = StyleSheet.create({
     width: Dimensions.get('screen').width - 50,
     resizeMode: 'contain',
   },
+  addButton: {
+    display: 'flex',
+    alignItems: 'center',
+    marginTop: 8,
+    padding: 8,
+    borderRadius: 50,
+    backgroundColor: colorStyles.picker,
+  },
+  addButtonText: { fontSize: 16, fontWeight: 'bold' },
 });

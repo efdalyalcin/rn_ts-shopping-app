@@ -1,8 +1,9 @@
 import { Dimensions, StyleSheet } from 'react-native';
+import { colorStyles } from 'src/styles/colors';
 
 export const styles = StyleSheet.create({
   card: {
-    padding: 8,
+    padding: 16,
     borderRadius: 8,
   },
   shadowProp: {
@@ -18,14 +19,22 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+    color: colorStyles.text,
   },
   desc: {
     marginTop: 8,
+    color: colorStyles.text,
   },
   cardPic: {
     marginTop: 8,
     height: 200,
-    width: Dimensions.get('screen').width - 40,
+    width: Dimensions.get('screen').width - 50,
     resizeMode: 'contain',
+  },
+  price: {
+    textAlign: 'center',
+    marginTop: 8,
+    fontSize: 16,
+    color: colorStyles.text,
   },
 });

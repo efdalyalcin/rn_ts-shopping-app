@@ -6,11 +6,11 @@ import { Shadow } from 'react-native-shadow-2';
 import FavoriteIcon from 'assets/icons/favorite_filled.svg';
 // @ts-ignore
 import NotFavoriteIcon from 'assets/icons/favorite_outlined.svg';
-import { Svg } from 'react-native-svg';
 import { IProduct } from 'src/shared/productInterface';
 import useFavoriteProducts from 'src/store/favoriteProducts';
 import useCart from 'src/store/cart';
 import CardButton from '../CardButton/CardButton';
+import { colorStyles } from 'src/styles/colors';
 
 type Props = {
   title: string;
@@ -26,8 +26,6 @@ const ShopCard = ({ title, description, pic, item }: Props) => {
   const { cart, totalPrice, addToCart, clearCart } = useCart();
   const inFavorites = favorites.find((favItem) => favItem?.id === item.id);
 
-  console.log(cart, totalPrice);
-
   return (
     <View style={{ padding: 10 }}>
       <Shadow>
@@ -37,14 +35,22 @@ const ShopCard = ({ title, description, pic, item }: Props) => {
               style={styles.favorite}
               onPress={() => removeFromFavorites(item)}
             >
-              <FavoriteIcon width={24} height={24} fill={'red'} />
+              <FavoriteIcon
+                width={24}
+                height={24}
+                fill={colorStyles.favorites}
+              />
             </Pressable>
           ) : (
             <Pressable
               style={styles.favorite}
               onPress={() => addToFavorites(item)}
             >
-              <NotFavoriteIcon width={24} height={24} fill={'red'} />
+              <NotFavoriteIcon
+                width={24}
+                height={24}
+                fill={colorStyles.favorites}
+              />
             </Pressable>
           )}
           <Text style={styles.title}>{title}</Text>
@@ -52,6 +58,10 @@ const ShopCard = ({ title, description, pic, item }: Props) => {
             {description}
           </Text>
           <Image style={styles.cardPic} source={{ uri: pic }} />
+          <Text style={styles.price}>
+            {item.price}
+            {' $'}
+          </Text>
           <CardButton item={item} />
         </View>
       </Shadow>

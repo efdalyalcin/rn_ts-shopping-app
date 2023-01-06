@@ -19,9 +19,11 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+    color: colorStyles.text,
   },
   desc: {
     marginTop: 8,
+    color: colorStyles.text,
   },
   cardPic: {
     marginTop: 8,
@@ -29,13 +31,10 @@ export const styles = StyleSheet.create({
     width: Dimensions.get('screen').width - 50,
     resizeMode: 'contain',
   },
-  addButton: {
-    display: 'flex',
-    alignItems: 'center',
+  price: {
+    textAlign: 'center',
     marginTop: 8,
-    padding: 8,
-    borderRadius: 50,
-    backgroundColor: colorStyles.picker,
+    fontSize: 16,
+    color: colorStyles.text,
   },
-  addButtonText: { fontSize: 16, fontWeight: 'bold' },
 });

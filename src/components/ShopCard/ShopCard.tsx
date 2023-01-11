@@ -28,43 +28,51 @@ const ShopCard = ({ title, description, pic, item }: Props) => {
 
   return (
     <View style={{ padding: 10 }}>
-      <Shadow>
-        <View style={[styles.card, styles.shadowProp]}>
-          {inFavorites ? (
-            <Pressable
-              style={styles.favorite}
-              onPress={() => removeFromFavorites(item)}
-            >
-              <FavoriteIcon
-                width={24}
-                height={24}
-                fill={colorStyles.favorites}
-              />
-            </Pressable>
-          ) : (
-            <Pressable
-              style={styles.favorite}
-              onPress={() => addToFavorites(item)}
-            >
-              <NotFavoriteIcon
-                width={24}
-                height={24}
-                fill={colorStyles.favorites}
-              />
-            </Pressable>
-          )}
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.desc} numberOfLines={3} ellipsizeMode="tail">
-            {description}
-          </Text>
-          <Image style={styles.cardPic} source={{ uri: pic }} />
-          <Text style={styles.price}>
-            {item.price}
-            {' $'}
-          </Text>
-          <CardButton item={item} />
-        </View>
-      </Shadow>
+      <Pressable
+        style={({ pressed }) => [
+          {
+            transform: pressed ? [{ scale: 1.05 }] : [{ scale: 1 }],
+          },
+        ]}
+      >
+        <Shadow>
+          <View style={[styles.card, styles.shadowProp]}>
+            {inFavorites ? (
+              <Pressable
+                style={styles.favorite}
+                onPress={() => removeFromFavorites(item)}
+              >
+                <FavoriteIcon
+                  width={24}
+                  height={24}
+                  fill={colorStyles.favorites}
+                />
+              </Pressable>
+            ) : (
+              <Pressable
+                style={styles.favorite}
+                onPress={() => addToFavorites(item)}
+              >
+                <NotFavoriteIcon
+                  width={24}
+                  height={24}
+                  fill={colorStyles.favorites}
+                />
+              </Pressable>
+            )}
+            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.desc} numberOfLines={3} ellipsizeMode="tail">
+              {description}
+            </Text>
+            <Image style={styles.cardPic} source={{ uri: pic }} />
+            <Text style={styles.price}>
+              {item.price}
+              {' $'}
+            </Text>
+            <CardButton item={item} />
+          </View>
+        </Shadow>
+      </Pressable>
     </View>
   );
 };

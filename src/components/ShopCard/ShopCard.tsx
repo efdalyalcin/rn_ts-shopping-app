@@ -1,5 +1,5 @@
-import { View, Text, Image, Pressable, TouchableOpacity } from 'react-native';
-import React from 'react';
+import { View, Text, Image, Pressable, Modal } from 'react-native';
+import React, { useCallback, useState } from 'react';
 import { styles } from './ShopCard.style';
 import { Shadow } from 'react-native-shadow-2';
 // @ts-ignore
@@ -8,9 +8,10 @@ import FavoriteIcon from 'assets/icons/favorite_filled.svg';
 import NotFavoriteIcon from 'assets/icons/favorite_outlined.svg';
 import { IProduct } from 'src/shared/productInterface';
 import useFavoriteProducts from 'src/store/favoriteProducts';
-import useCart from 'src/store/cart';
 import CardButton from '../CardButton/CardButton';
 import { colorStyles } from 'src/styles/colors';
+import GestureRecognizer from 'react-native-swipe-gestures';
+import { StatusBar } from 'expo-status-bar';
 
 type Props = {
   title: string;
@@ -20,14 +21,25 @@ type Props = {
 };
 
 const ShopCard = ({ title, description, pic, item }: Props) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { favorites, addToFavorites, removeFromFavorites } =
     useFavoriteProducts();
 
-  const { cart, totalPrice, addToCart, clearCart } = useCart();
   const inFavorites = favorites.find((favItem) => favItem?.id === item.id);
+  const handlePress = useCallback(() => {
+    setIsModalOpen((prev) => !prev);
+  }, []);
 
   return (
     <View style={{ padding: 10 }}>
+      {/* this is for on press style changes
+          <Pressable
+        style={({ pressed }) => [
+          {
+            transform: pressed ? [{ scale: 1.05 }] : [{ scale: 1 }],
+          },
+        ]}
+      > */}
       <Shadow>
         <View style={[styles.card, styles.shadowProp]}>
           {inFavorites ? (
@@ -57,7 +69,25 @@ const ShopCard = ({ title, description, pic, item }: Props) => {
           <Text style={styles.desc} numberOfLines={3} ellipsizeMode="tail">
             {description}
           </Text>
-          <Image style={styles.cardPic} source={{ uri: pic }} />
+          <Pressable onPress={handlePress}>
+            <Image style={styles.cardPic} source={{ uri: pic }} />
+          </Pressable>
+          <GestureRecognizer
+            onSwipeDown={() => setIsModalOpen(false)}
+            onSwipeUp={() => setIsModalOpen(false)}
+          >
+            <StatusBar />
+            <Modal
+              visible={isModalOpen}
+              transparent={false}
+              animationType="fade"
+            >
+              <Image
+                style={[styles.modalPic, styles.modalView]}
+                source={{ uri: pic }}
+              />
+            </Modal>
+          </GestureRecognizer>
           <Text style={styles.price}>
             {item.price}
             {' $'}
@@ -65,6 +95,7 @@ const ShopCard = ({ title, description, pic, item }: Props) => {
           <CardButton item={item} />
         </View>
       </Shadow>
+      {/* </Pressable> */}
     </View>
   );
 };

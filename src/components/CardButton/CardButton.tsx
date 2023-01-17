@@ -27,7 +27,6 @@ export default function CardButton({ item }: Props) {
   useEffect(() => {
     productInitial = cart.find((product) => product.id === item.id)?.amount;
 
-    console.log(productInitial);
     setProductAmount(productInitial);
   }, [cart]);
 
@@ -35,7 +34,6 @@ export default function CardButton({ item }: Props) {
     cart.find((product) => product.id === item.id)?.amount || 1
   );
 
-  console.log(productAmount);
   const isProductInCart = cart.some(
     (cartItem: ICartItem) => cartItem.id === item.id
   );

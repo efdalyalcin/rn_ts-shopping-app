@@ -24,36 +24,12 @@ export default function Store() {
 
   const renderItem = ({ item, index }) => {
     return (
-      <>
-        <ShopCard
-          title={item.title}
-          description={item.description}
-          pic={item.image}
-          item={item}
-        />
-        {
-          //   <Card mode="elevated" style={styles.flatListItems}>
-          //   <Card.Title title={item.title} />
-          //   <Card.Content>
-          //     <Paragraph>{item.description}</Paragraph>
-          //   </Card.Content>
-          //   <Card.Cover source={{ uri: item.image }} resizeMode="contain" />
-          //   <Card.Actions>
-          //     <Button
-          //       onPress={
-          //         isInFavorites
-          //           ? () => removeFromFavorites(item.id)
-          //           : () => addToFavorites(item)
-          //       }
-          //     >
-          //       Add to Favorites
-          //       {/* <Image source={favoritesIcon}></Image> */}
-          //     </Button>
-          //     <Button>Add to Cart</Button>
-          //   </Card.Actions>
-          // </Card>
-        }
-      </>
+      <ShopCard
+        title={item.title}
+        description={item.description}
+        pic={item.image}
+        item={item}
+      />
     );
   };
 

@@ -18,9 +18,10 @@ import { colorStyles } from 'src/styles/colors';
 
 type Props = {
   item: IProduct;
+  buttonHeight: number;
 };
 
-export default function CardButton({ item }: Props) {
+export default function CardButton({ item, buttonHeight }: Props) {
   const { cart, addToCart, removeFromCart, insertAmount } = useCart();
 
   let productInitial: number;
@@ -69,7 +70,7 @@ export default function CardButton({ item }: Props) {
               maxValue={20}
               onChange={handleOnChange}
               totalWidth={120}
-              totalHeight={36}
+              totalHeight={buttonHeight}
               iconSize={16}
               step={1}
               valueType="integer"

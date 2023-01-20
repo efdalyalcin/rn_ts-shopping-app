@@ -92,7 +92,7 @@ const ShopCard = ({ title, description, pic, item }: Props) => {
             {item.price}
             {' $'}
           </Text>
-          <CardButton item={item} />
+          <CardButton item={item} buttonHeight={36} />
         </View>
       </Shadow>
       {/* </Pressable> */}

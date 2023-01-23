@@ -2,12 +2,9 @@ import React from 'react';
 import { BottomNavigation, Text } from 'react-native-paper';
 // @ts-ignore
 import ShopIcon from 'assets/icons/shopping_cart.png';
-import Home from 'src/pages/Home/Home';
 import Store from 'src/pages/Store/Store';
-
-const StoreRoute = () => <Text>Store</Text>;
-
-const FavoritesRoute = () => <Text>Favorites</Text>;
+import Favorites from 'src/pages/Favorites/Favorites';
+import Cart from 'src/pages/Cart/Cart';
 
 const RecentsRoute = () => <Text>Recents</Text>;
 
@@ -28,19 +25,19 @@ const BottomNav = () => {
       focusedIcon: 'heart',
       unfocusedIcon: 'heart-outline',
     },
-    { key: 'recents', title: 'Recents', focusedIcon: 'history' },
     {
       key: 'cart',
       title: 'Cart',
       focusedIcon: ShopIcon,
     },
+    { key: 'account', title: 'Account', focusedIcon: 'account' },
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
     store: Store,
-    favorites: FavoritesRoute,
-    recents: RecentsRoute,
-    cart: CartRoute,
+    favorites: Favorites,
+    cart: Cart,
+    account: RecentsRoute,
   });
 
   return (

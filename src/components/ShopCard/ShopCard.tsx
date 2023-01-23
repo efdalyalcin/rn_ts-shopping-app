@@ -33,13 +33,13 @@ const ShopCard = ({ title, description, pic, item }: Props) => {
   return (
     <View style={{ padding: 10 }}>
       {/* this is for on press style changes
-          <Pressable
-        style={({ pressed }) => [
-          {
-            transform: pressed ? [{ scale: 1.05 }] : [{ scale: 1 }],
-          },
-        ]}
-      > */}
+            <Pressable
+          style={({ pressed }) => [
+            {
+              transform: pressed ? [{ scale: 1.05 }] : [{ scale: 1 }],
+            },
+          ]}
+        > */}
       <Shadow>
         <View style={[styles.card, styles.shadowProp]}>
           {inFavorites ? (
@@ -92,7 +92,7 @@ const ShopCard = ({ title, description, pic, item }: Props) => {
             {item.price}
             {' $'}
           </Text>
-          <CardButton item={item} />
+          <CardButton item={item} buttonHeight={36} />
         </View>
       </Shadow>
       {/* </Pressable> */}

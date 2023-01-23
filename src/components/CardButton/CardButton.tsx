@@ -18,16 +18,16 @@ import { colorStyles } from 'src/styles/colors';
 
 type Props = {
   item: IProduct;
+  buttonHeight: number;
 };
 
-export default function CardButton({ item }: Props) {
+export default function CardButton({ item, buttonHeight }: Props) {
   const { cart, addToCart, removeFromCart, insertAmount } = useCart();
 
   let productInitial: number;
   useEffect(() => {
     productInitial = cart.find((product) => product.id === item.id)?.amount;
 
-    console.log(productInitial);
     setProductAmount(productInitial);
   }, [cart]);
 
@@ -35,7 +35,6 @@ export default function CardButton({ item }: Props) {
     cart.find((product) => product.id === item.id)?.amount || 1
   );
 
-  console.log(productAmount);
   const isProductInCart = cart.some(
     (cartItem: ICartItem) => cartItem.id === item.id
   );
@@ -71,7 +70,7 @@ export default function CardButton({ item }: Props) {
               maxValue={20}
               onChange={handleOnChange}
               totalWidth={120}
-              totalHeight={36}
+              totalHeight={buttonHeight}
               iconSize={16}
               step={1}
               valueType="integer"

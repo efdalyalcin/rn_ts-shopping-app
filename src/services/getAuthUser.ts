@@ -1,14 +1,14 @@
 import axios from 'axios';
 import { IProduct } from 'src/shared/productInterface';
+import { ILoginCredentials } from 'src/shared/userInterface';
 import { BASE_URL } from './urls';
 
-export const getProducts = () => {
+export const getAuthUser = (loginCredentials: ILoginCredentials) => {
   return new Promise<IProduct>((resolve, reject) => {
     axios
-      .get(`${BASE_URL}/products`)
+      .post(`${BASE_URL}/auth/login/`, loginCredentials)
       .then((res) => {
-        // console.log('the data from the server ===> ', res.data);
-        resolve(res.data);
+        resolve(res.data.token);
       })
       .catch((error) => {
         reject(error);

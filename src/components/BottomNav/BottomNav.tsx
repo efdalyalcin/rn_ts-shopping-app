@@ -1,14 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BottomNavigation, Text } from 'react-native-paper';
 // @ts-ignore
 import ShopIcon from 'assets/icons/shopping_cart.png';
 import Store from 'src/pages/Store/Store';
 import Favorites from 'src/pages/Favorites/Favorites';
 import Cart from 'src/pages/Cart/Cart';
+import { Pressable } from 'react-native';
+import useAuth from 'src/store/auth';
+import { getAuthUser } from 'src/services/getAuthUser';
 
 const RecentsRoute = () => <Text>Recents</Text>;
 
-const CartRoute = () => <Text>Cart</Text>;
+const Account = () => {
+  const { logout, login } = useAuth();
+  const [user, setUser] = useState('');
+
+  useEffect(() => {
+    getAuthUser({ username: 'mor_2314', password: '83r5^_' }).then((res) =>
+      setUser(res)
+    );
+  }, []);
+
+  console.log(user);
+
+  return (
+    <>
+      <Pressable
+        onPress={() => login('')}
+        style={{ height: 50, width: 150, backgroundColor: 'green' }}
+      >
+        <Text>Login</Text>
+      </Pressable>
+      <Pressable
+        onPress={() => logout()}
+        style={{ height: 50, width: 150, backgroundColor: 'red' }}
+      >
+        <Text>Logout</Text>
+      </Pressable>
+    </>
+  );
+};
 
 const BottomNav = () => {
   const [index, setIndex] = React.useState(0);
@@ -37,7 +68,7 @@ const BottomNav = () => {
     store: Store,
     favorites: Favorites,
     cart: Cart,
-    account: RecentsRoute,
+    account: Account,
   });
 
   return (

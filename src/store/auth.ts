@@ -1,6 +1,7 @@
 import { ILoginCredentials } from 'src/shared/userInterface';
 import create from 'zustand';
 import useCart from './cart';
+import useFavoriteProducts from './favoriteProducts';
 
 type IAuthState = {
   isUserLoggedIn: boolean;
@@ -25,9 +26,10 @@ const useAuth = create<IAuthState>((set) => ({
     }));
   },
   logout: () => {
-    // it gets whole state, clearCart could be destructured also
     const cart = useCart.getState();
     cart.clearCart();
+    const favorites = useFavoriteProducts.getState();
+    favorites.clearFavorites();
 
     set(() => ({
       token: '',

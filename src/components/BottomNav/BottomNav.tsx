@@ -5,7 +5,7 @@ import ShopIcon from 'assets/icons/shopping_cart.png';
 import Store from 'src/pages/Store/Store';
 import Favorites from 'src/pages/Favorites/Favorites';
 import Cart from 'src/pages/Cart/Cart';
-import { Pressable } from 'react-native';
+import { Pressable, View } from 'react-native';
 import useAuth from 'src/store/auth';
 import { getAuthUser } from 'src/services/getAuthUser';
 

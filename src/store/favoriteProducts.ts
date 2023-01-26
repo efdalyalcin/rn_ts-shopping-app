@@ -8,6 +8,7 @@ interface IFavoriteProductsState {
   favorites: IProduct[];
   addToFavorites: (product: IProduct) => void;
   removeFromFavorites: (product: IProduct) => void;
+  clearFavorites: () => void;
 }
 
 const useFavoriteProducts = create<IFavoriteProductsState>()(
@@ -25,6 +26,9 @@ const useFavoriteProducts = create<IFavoriteProductsState>()(
         set(() => ({
           favorites: get().favorites.filter((fav) => product.id !== fav.id),
         }));
+      },
+      clearFavorites: () => {
+        set(() => ({ favorites: [] }));
       },
     }),
 

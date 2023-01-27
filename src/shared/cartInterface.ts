@@ -5,3 +5,8 @@ export interface ICartItem {
   amount: number;
   product: IProduct;
 }
+
+export interface ICartProduct {
+  productId: number;
+  quantity: number;
+}

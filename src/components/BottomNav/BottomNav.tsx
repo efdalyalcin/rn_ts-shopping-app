@@ -8,6 +8,7 @@ import Cart from 'src/pages/Cart/Cart';
 import { Pressable, View } from 'react-native';
 import useAuth from 'src/store/auth';
 import { getAuthUser } from 'src/services/getAuthUser';
+import LoginModal from '../LoginModal/LoginModal';
 
 const RecentsRoute = () => <Text>Recents</Text>;
 
@@ -37,6 +38,7 @@ const Account = () => {
       >
         <Text>Logout</Text>
       </Pressable>
+      <LoginModal />
     </>
   );
 };

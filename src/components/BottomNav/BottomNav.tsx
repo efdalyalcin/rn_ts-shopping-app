@@ -10,8 +10,6 @@ import useAuth from 'src/store/auth';
 import { getAuthUser } from 'src/services/getAuthUser';
 import LoginModal from '../LoginModal/LoginModal';
 
-const RecentsRoute = () => <Text>Recents</Text>;
-
 const Account = () => {
   const { logout, login } = useAuth();
   const [user, setUser] = useState('');
@@ -22,7 +20,7 @@ const Account = () => {
     );
   }, []);
 
-  console.log(user);
+  console.log('user token ===> ', user);
 
   return (
     <>

@@ -13,6 +13,7 @@ import LoginModal from '../LoginModal/LoginModal';
 const Account = () => {
   const { logout, login } = useAuth();
   const [user, setUser] = useState('');
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   useEffect(() => {
     getAuthUser({ username: 'mor_2314', password: '83r5^_' }).then((res) =>
@@ -25,7 +26,10 @@ const Account = () => {
   return (
     <>
       <Pressable
-        onPress={() => login('')}
+        onPress={() => {
+          login('');
+          setIsModalVisible(true);
+        }}
         style={{ height: 50, width: 150, backgroundColor: 'green' }}
       >
         <Text>Login</Text>
@@ -36,7 +40,10 @@ const Account = () => {
       >
         <Text>Logout</Text>
       </Pressable>
-      <LoginModal />
+      <LoginModal
+        isModalVisible={isModalVisible}
+        setIsModalVisible={setIsModalVisible}
+      />
     </>
   );
 };

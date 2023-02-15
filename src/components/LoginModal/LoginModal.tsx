@@ -12,8 +12,15 @@ import { Formik } from 'formik';
 
 const height = Dimensions.get('screen').height;
 
-export default function LoginModal() {
-  const [isModalVisible, setIsModalVisible] = useState(false);
+type Props = {
+  isModalVisible: boolean;
+  setIsModalVisible: (setter: boolean) => void;
+};
+
+export default function LoginModal({
+  isModalVisible,
+  setIsModalVisible,
+}: Props) {
   return (
     <Modal
       animationType="slide"
@@ -31,11 +38,18 @@ export default function LoginModal() {
         {({ handleChange, handleBlur, handleSubmit, values }) => (
           <View
             style={{
-              height: height - 40,
-              width: 200,
+              marginTop: 64,
+              height: height - 64,
+              width: '100%',
               backgroundColor: 'orange',
             }}
           >
+            <Pressable
+              style={{ display: 'flex', alignItems: 'flex-end' }}
+              onPress={() => setIsModalVisible(false)}
+            >
+              <Text style={{ padding: 20 }}>X</Text>
+            </Pressable>
             <TextInput
               onChangeText={handleChange('email')}
               onBlur={handleBlur('email')}

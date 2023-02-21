@@ -5,8 +5,8 @@ const height = Dimensions.get('screen').height;
 
 export const styles = StyleSheet.create({
   container: {
-    marginTop: 64,
-    height: height - 64,
+    marginTop: 20,
+    height: height,
     width: '100%',
     backgroundColor: colorStyles.background,
   },
@@ -15,6 +15,16 @@ export const styles = StyleSheet.create({
     alignItems: 'flex-end',
     marginRight: 10,
     padding: 4,
+  },
+  animContainer: {
+    height: height / 3,
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  label: {
+    textAlign: 'center',
+    fontSize: 64,
+    color: colorStyles.text,
   },
   inputs: {
     display: 'flex',
@@ -36,9 +46,5 @@ export const styles = StyleSheet.create({
     backgroundColor: colorStyles.primary,
     borderRadius: 16,
     flex: 1,
-  },
-  label: {
-    paddingHorizontal: 20,
-    paddingVertical: 4,
   },
 });

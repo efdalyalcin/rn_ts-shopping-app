@@ -4,10 +4,9 @@ import {
   TextInput,
   Pressable,
   Modal,
-  Alert,
   Animated,
 } from 'react-native';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Formik } from 'formik';
 import { styles } from './LoginModal.style';
 // @ts-ignore
@@ -23,34 +22,41 @@ type Props = {
   setIsModalVisible: (setter: boolean) => void;
 };
 
+//#region KeyboardAvoid
+/*
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.container}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.inner}>
+          <Text style={styles.header}>Header</Text>
+          <TextInput placeholder="Username" style={styles.textInput} />
+          <View style={styles.btnContainer}>
+            <Button title="Submit" onPress={() => null} />
+          </View>
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>;
+*/
+//#endregion
 export default function LoginModal({
   isModalVisible,
   setIsModalVisible,
 }: Props) {
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
-  const fadeIn = () => {
+  const fadeIn = useCallback(() => {
     Animated.timing(fadeAnim, {
-      delay: 500,
       toValue: 1,
       duration: 3000,
       useNativeDriver: true,
     }).start();
-  };
+  }, []);
 
   const fadeOut = () => {
-    Animated.timing(fadeAnim, {
-      toValue: 0,
-      duration: 1000,
-      useNativeDriver: true,
-    }).start();
+    fadeAnim.setValue(0);
   };
-
-  useEffect(() => {
-    const fadeing = setTimeout(() => {
-      fadeIn();
-    }, 300);
-  }, []);
 
   return (
     <Modal
@@ -58,9 +64,9 @@ export default function LoginModal({
       transparent={true}
       visible={isModalVisible}
       onRequestClose={() => {
-        Alert.alert('Modal has been closed.');
         setIsModalVisible(!isModalVisible);
       }}
+      onShow={fadeIn}
     >
       <Formik
         initialValues={{ username: '', password: '' }}
@@ -78,8 +84,10 @@ export default function LoginModal({
             >
               <CloseIcon width={24} height={24} fill={colorStyles.main} />
             </Pressable>
-            <Animated.View style={[{ opacity: fadeAnim }]}>
-              <Text>Log In</Text>
+            <Animated.View
+              style={[styles.animContainer, { opacity: fadeAnim }]}
+            >
+              <Text style={styles.label}>Log In</Text>
             </Animated.View>
             <View style={styles.inputs}>
               <View style={styles.inputBlock}>

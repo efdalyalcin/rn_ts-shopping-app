@@ -17,7 +17,6 @@ export const styles = StyleSheet.create({
     padding: 4,
   },
   animContainer: {
-    // height: height / 3,
     display: 'flex',
     justifyContent: 'center',
   },
@@ -37,7 +36,7 @@ export const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 12,
   },
   textInput: {
     marginLeft: 8,

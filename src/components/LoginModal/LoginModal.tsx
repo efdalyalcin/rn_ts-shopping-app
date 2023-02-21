@@ -74,10 +74,16 @@ export default function LoginModal({
         onSubmit={(values) => console.log(values)}
         validationSchema={SignupSchema}
       >
-        {({ handleChange, handleBlur, handleSubmit, values }) => (
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+          errors,
+          touched,
+        }) => (
           <View style={styles.container}>
             <Pressable
-              // icon="close-circle-outline"
               onPress={() => {
                 setIsModalVisible(false);
                 fadeOut();
@@ -98,6 +104,19 @@ export default function LoginModal({
                     <Text style={styles.label}>{modalLabel}</Text>
                   </Animated.View>
                   <View style={styles.inputs}>
+                    <Text
+                      style={
+                        touched.username && errors.username
+                          ? { fontSize: 12, color: colorStyles.error }
+                          : {
+                              fontSize: 12,
+                              color: colorStyles.error,
+                              opacity: 0,
+                            }
+                      }
+                    >
+                      {errors.username}
+                    </Text>
                     <View style={styles.inputBlock}>
                       <AccountIcon
                         fill={colorStyles.text}
@@ -112,6 +131,19 @@ export default function LoginModal({
                         placeholder="username"
                       />
                     </View>
+                    <Text
+                      style={
+                        touched.password && errors.password
+                          ? { fontSize: 12, color: colorStyles.error }
+                          : {
+                              fontSize: 12,
+                              color: colorStyles.error,
+                              opacity: 0,
+                            }
+                      }
+                    >
+                      {errors.password}
+                    </Text>
                     <View style={styles.inputBlock}>
                       <PasswordIcon
                         fill={colorStyles.text}
@@ -127,8 +159,11 @@ export default function LoginModal({
                         placeholder="password"
                       />
                     </View>
-                    {/* @ts-ignore*/}
-                    <Button onPress={(e) => handleSubmit(e)} title="Login" />
+                    <Button
+                      /* @ts-ignore*/
+                      onPress={(e) => handleSubmit(e)}
+                      title={modalLabel}
+                    />
                   </View>
                 </View>
               </TouchableWithoutFeedback>

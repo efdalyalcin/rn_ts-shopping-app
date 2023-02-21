@@ -43,6 +43,7 @@ const Account = () => {
       <LoginModal
         isModalVisible={isModalVisible}
         setIsModalVisible={setIsModalVisible}
+        modalLabel={'Sign In'}
       />
     </>
   );

@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     padding: 4,
   },
   animContainer: {
-    height: height / 3,
+    // height: height / 3,
     display: 'flex',
     justifyContent: 'center',
   },

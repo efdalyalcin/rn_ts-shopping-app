@@ -22,6 +22,7 @@ import AccountIcon from 'assets/icons/account_filled.svg';
 // @ts-ignore
 import PasswordIcon from 'assets/icons/password_filled.svg';
 import { colorStyles } from 'src/styles/colors';
+import { ModalEnum } from 'src/shared/modalEnum';
 
 type Props = {
   isModalVisible: boolean;
@@ -29,7 +30,7 @@ type Props = {
   modalLabel: string;
 };
 
-const SignupSchema = Yup.object().shape({
+const SignInSchema = Yup.object().shape({
   username: Yup.string()
     .min(3, 'Too Short!')
     .max(20, 'Too Long!')
@@ -37,6 +38,20 @@ const SignupSchema = Yup.object().shape({
   password: Yup.string()
     .min(8, 'Too Short!')
     .max(20, 'Too Long!')
+    .required('Required'),
+});
+
+const SignUpSchema = Yup.object().shape({
+  username: Yup.string()
+    .min(3, 'Too Short!')
+    .max(20, 'Too Long!')
+    .required('Required'),
+  password: Yup.string()
+    .min(8, 'Too Short!')
+    .max(20, 'Too Long!')
+    .required('Required'),
+  passwordCheck: Yup.string()
+    .oneOf([Yup.ref('password'), null], 'Passwords must match')
     .required('Required'),
 });
 
@@ -70,9 +85,11 @@ export default function LoginModal({
       onShow={fadeIn}
     >
       <Formik
-        initialValues={{ username: '', password: '' }}
+        initialValues={{ username: '', password: '', passwordCheck: '' }}
         onSubmit={(values) => console.log(values)}
-        validationSchema={SignupSchema}
+        validationSchema={
+          modalLabel === ModalEnum.signIn ? SignInSchema : SignUpSchema
+        }
       >
         {({
           handleChange,
@@ -159,6 +176,38 @@ export default function LoginModal({
                         placeholder="password"
                       />
                     </View>
+                    {modalLabel === ModalEnum.register ? (
+                      <>
+                        <Text
+                          style={
+                            touched.passwordCheck && errors.passwordCheck
+                              ? { fontSize: 12, color: colorStyles.error }
+                              : {
+                                  fontSize: 12,
+                                  color: colorStyles.error,
+                                  opacity: 0,
+                                }
+                          }
+                        >
+                          {errors.passwordCheck}
+                        </Text>
+                        <View style={styles.inputBlock}>
+                          <PasswordIcon
+                            fill={colorStyles.text}
+                            width={24}
+                            height={24}
+                          />
+                          <TextInput
+                            secureTextEntry
+                            onChangeText={handleChange('passwordCheck')}
+                            onBlur={handleBlur('passwordCheck')}
+                            value={values.passwordCheck}
+                            style={styles.textInput}
+                            placeholder="Retype password"
+                          />
+                        </View>
+                      </>
+                    ) : null}
                     <Button
                       /* @ts-ignore*/
                       onPress={(e) => handleSubmit(e)}

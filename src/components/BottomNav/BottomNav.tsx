@@ -9,6 +9,7 @@ import { Pressable, View } from 'react-native';
 import useAuth from 'src/store/auth';
 import { getAuthUser } from 'src/services/getAuthUser';
 import LoginModal from '../LoginModal/LoginModal';
+import { ModalEnum } from 'src/shared/modalEnum';
 
 const Account = () => {
   const { logout, login } = useAuth();
@@ -53,12 +54,12 @@ const Account = () => {
       <LoginModal
         isModalVisible={isLoginVisible}
         setIsModalVisible={setIsLoginVisible}
-        modalLabel={'Sign in'}
+        modalLabel={ModalEnum.signIn}
       />
       <LoginModal
         isModalVisible={isRegisterVisible}
         setIsModalVisible={setIsRegisterVisible}
-        modalLabel={'Register'}
+        modalLabel={ModalEnum.register}
       />
     </>
   );

@@ -9,7 +9,7 @@ import { Pressable, View } from 'react-native';
 import useAuth from 'src/store/auth';
 import { getAuthUser } from 'src/services/getAuthUser';
 import LoginModal from '../LoginModal/LoginModal';
-import { ModalEnum } from 'src/shared/modalEnum';
+import { ModalEnum } from 'src/shared/modalInterfaces';
 
 const Account = () => {
   const { logout, login } = useAuth();

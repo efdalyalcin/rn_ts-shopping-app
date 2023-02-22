@@ -9,11 +9,13 @@ import { Pressable, View } from 'react-native';
 import useAuth from 'src/store/auth';
 import { getAuthUser } from 'src/services/getAuthUser';
 import LoginModal from '../LoginModal/LoginModal';
+import { ModalEnum } from 'src/shared/modalEnum';
 
 const Account = () => {
   const { logout, login } = useAuth();
   const [user, setUser] = useState('');
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isLoginVisible, setIsLoginVisible] = useState(false);
+  const [isRegisterVisible, setIsRegisterVisible] = useState(false);
 
   useEffect(() => {
     getAuthUser({ username: 'mor_2314', password: '83r5^_' }).then((res) =>
@@ -28,11 +30,20 @@ const Account = () => {
       <Pressable
         onPress={() => {
           login('');
-          setIsModalVisible(true);
+          setIsLoginVisible(true);
         }}
         style={{ height: 50, width: 150, backgroundColor: 'green' }}
       >
         <Text>Login</Text>
+      </Pressable>
+      <Pressable
+        onPress={() => {
+          login('');
+          setIsRegisterVisible(true);
+        }}
+        style={{ height: 50, width: 150, backgroundColor: 'blue' }}
+      >
+        <Text>Register</Text>
       </Pressable>
       <Pressable
         onPress={() => logout()}
@@ -41,8 +52,14 @@ const Account = () => {
         <Text>Logout</Text>
       </Pressable>
       <LoginModal
-        isModalVisible={isModalVisible}
-        setIsModalVisible={setIsModalVisible}
+        isModalVisible={isLoginVisible}
+        setIsModalVisible={setIsLoginVisible}
+        modalLabel={ModalEnum.signIn}
+      />
+      <LoginModal
+        isModalVisible={isRegisterVisible}
+        setIsModalVisible={setIsRegisterVisible}
+        modalLabel={ModalEnum.register}
       />
     </>
   );

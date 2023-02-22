@@ -6,4 +6,5 @@ export const colorStyles = {
   picker: '#E8DDF9',
   text: '#252C3A',
   favorites: '#E0241E',
+  error: '#FF0D10',
 };

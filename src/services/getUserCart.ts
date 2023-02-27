@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { IProduct } from 'src/shared/productInterface';
+import { IUserCart } from 'src/shared/userInterface';
 import { BASE_URL } from './urls';
 
-export const getProducts = () => {
-  return new Promise<IProduct>((resolve, reject) => {
+export const getUserCart = (id: number) => {
+  return new Promise<IUserCart>((resolve, reject) => {
     axios
-      .get(`${BASE_URL}/products`)
+      .get(`${BASE_URL}/carts/user/${id}`)
       .then((res) => {
         // console.log('the data from the server ===> ', res.data);
         resolve(res.data);

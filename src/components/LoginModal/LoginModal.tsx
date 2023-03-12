@@ -100,9 +100,12 @@ export default function LoginModal({
             const hash = bcrypt.hashSync(values.password, 10);
             setLoginCredentials(values.username, hash);
             login(res);
+            setIsLoading(false);
+            setIsModalVisible(false);
           })
           .catch(() => {
             setIsLoginSuccess(false);
+            setIsLoading(false);
           });
         setHasTriedLogin(true);
       } else {
@@ -121,6 +124,7 @@ export default function LoginModal({
       }}
       onShow={fadeIn}
     >
+      <LoadingView isVisible={isLoading} loadingText={''} />
       <Formik
         initialValues={{ username: '', password: '', passwordCheck: '' }}
         onSubmit={(values) => submitForm(values)}

@@ -1,23 +1,21 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet, Modal, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import AnimatedLoader from 'react-native-animated-loader';
 
-export default function LoadingModal() {
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    setInterval(() => {
-      setVisible(!visible);
-    }, 2000);
-  }, []);
+type Props = {
+  isVisible: boolean;
+  loadingText: string;
+};
 
+export default function LoadingView({ isVisible, loadingText }: Props) {
   return (
     <AnimatedLoader
-      visible={visible}
+      visible={isVisible}
       overlayColor="rgba(255,255,255,0.75)"
       animationStyle={styles.lottie}
       speed={1}
     >
-      <Text>Doing something...</Text>
+      <Text>{loadingText}</Text>
     </AnimatedLoader>
   );
 }

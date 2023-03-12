@@ -26,6 +26,7 @@ import { colorStyles } from 'src/styles/colors';
 import { ILoginForm, ModalEnum } from 'src/shared/modalInterfaces';
 import { getAuthUser } from 'src/services/getAuthUser';
 import useAuth from 'src/store/auth';
+import LoadingView from '../LoadingView/LoadingView';
 
 type Props = {
   isModalVisible: boolean;
@@ -70,6 +71,7 @@ export default function LoginModal({
 
   const [isLoginSuccess, setIsLoginSuccess] = useState(false);
   const [hasTriedLogin, setHasTriedLogin] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fadeIn = useCallback(() => {
     Animated.timing(fadeAnim, {
@@ -84,9 +86,11 @@ export default function LoginModal({
   };
   //"johnd"
   //"m38rmF$"
+
   const submitForm = useCallback(
     (values: ILoginForm) => {
       if (modalLabel === ModalEnum.signIn) {
+        setIsLoading(true);
         getAuthUser({
           username: values.username,
           password: values.password,

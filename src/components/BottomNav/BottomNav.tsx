@@ -10,7 +10,7 @@ import useAuth from 'src/store/auth';
 import { getAuthUser } from 'src/services/getAuthUser';
 import LoginModal from '../LoginModal/LoginModal';
 import { ModalEnum } from 'src/shared/modalInterfaces';
-import LoadingView from '../LoadingView/LoadingView';
+import LoadingLottie from '../LoadingLottie/LoadingLottie';
 
 const Account = () => {
   const { logout, login } = useAuth();
@@ -19,11 +19,11 @@ const Account = () => {
   const [isRegisterVisible, setIsRegisterVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  }, [isLoading]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 20000);
+  // }, [isLoading]);
 
   const onLogin = () => {
     getAuthUser({ username: 'mor_2314', password: '83r5^_' }).then((res) =>
@@ -34,7 +34,7 @@ const Account = () => {
   console.log('user token ===> ', user);
 
   return (
-    <>
+    <View style={{ position: 'relative' }}>
       <Pressable
         onPress={() => {
           login('');
@@ -65,7 +65,9 @@ const Account = () => {
       >
         <Text>loading</Text>
       </Pressable>
-      <LoadingView isVisible={isLoading} loadingText={'Trying to login!!!'} />
+
+      <LoadingLottie />
+
       <LoginModal
         isModalVisible={isLoginVisible}
         setIsModalVisible={setIsLoginVisible}
@@ -76,7 +78,7 @@ const Account = () => {
         setIsModalVisible={setIsRegisterVisible}
         modalLabel={ModalEnum.register}
       />
-    </>
+    </View>
   );
 };
 

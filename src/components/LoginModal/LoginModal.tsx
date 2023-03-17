@@ -26,7 +26,6 @@ import { colorStyles } from 'src/styles/colors';
 import { ILoginForm, ModalEnum } from 'src/shared/modalInterfaces';
 import { getAuthUser } from 'src/services/getAuthUser';
 import useAuth from 'src/store/auth';
-import LoadingView from '../LoadingView/LoadingView';
 
 type Props = {
   isModalVisible: boolean;
@@ -124,7 +123,7 @@ export default function LoginModal({
       }}
       onShow={fadeIn}
     >
-      <LoadingView isVisible={isLoading} loadingText={''} />
+      {/* <LoadingView isVisible={isLoading} loadingText={''} /> */}
       <Formik
         initialValues={{ username: '', password: '', passwordCheck: '' }}
         onSubmit={(values) => submitForm(values)}

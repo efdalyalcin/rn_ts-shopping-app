@@ -9,19 +9,27 @@ import { Pressable, View } from 'react-native';
 import useAuth from 'src/store/auth';
 import { getAuthUser } from 'src/services/getAuthUser';
 import LoginModal from '../LoginModal/LoginModal';
-import { ModalEnum } from 'src/shared/modalEnum';
+import { ModalEnum } from 'src/shared/modalInterfaces';
+import LoadingView from '../LoadingView/LoadingView';
 
 const Account = () => {
   const { logout, login } = useAuth();
   const [user, setUser] = useState('');
   const [isLoginVisible, setIsLoginVisible] = useState(false);
   const [isRegisterVisible, setIsRegisterVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, [isLoading]);
+
+  const onLogin = () => {
     getAuthUser({ username: 'mor_2314', password: '83r5^_' }).then((res) =>
       setUser(res)
     );
-  }, []);
+  };
 
   console.log('user token ===> ', user);
 
@@ -51,6 +59,13 @@ const Account = () => {
       >
         <Text>Logout</Text>
       </Pressable>
+      <Pressable
+        onPress={() => setIsLoading(true)}
+        style={{ height: 50, width: 150, backgroundColor: 'purple' }}
+      >
+        <Text>loading</Text>
+      </Pressable>
+      <LoadingView isVisible={isLoading} loadingText={'Trying to login!!!'} />
       <LoginModal
         isModalVisible={isLoginVisible}
         setIsModalVisible={setIsLoginVisible}

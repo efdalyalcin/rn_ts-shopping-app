@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { IProduct } from 'src/shared/productInterface';
 import { ILoginCredentials } from 'src/shared/userInterface';
 import { BASE_URL } from './urls';
 

@@ -11,9 +11,10 @@ import {
   Keyboard,
   Button,
 } from 'react-native';
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import bcrypt from 'react-native-bcrypt';
 import { styles } from './LoginModal.style';
 // @ts-ignore
 import CloseIcon from 'assets/icons/close-circle-outline.svg';
@@ -22,7 +23,10 @@ import AccountIcon from 'assets/icons/account_filled.svg';
 // @ts-ignore
 import PasswordIcon from 'assets/icons/password_filled.svg';
 import { colorStyles } from 'src/styles/colors';
-import { ModalEnum } from 'src/shared/modalEnum';
+import { ILoginForm, ModalEnum } from 'src/shared/modalInterfaces';
+import { getAuthUser } from 'src/services/getAuthUser';
+import useAuth from 'src/store/auth';
+import LoadingView from '../LoadingView/LoadingView';
 
 type Props = {
   isModalVisible: boolean;
@@ -30,13 +34,14 @@ type Props = {
   modalLabel: string;
 };
 
+//#region Schemas for Formik
 const SignInSchema = Yup.object().shape({
   username: Yup.string()
     .min(3, 'Too Short!')
     .max(20, 'Too Long!')
     .required('Required'),
   password: Yup.string()
-    .min(8, 'Too Short!')
+    .min(6, 'Too Short!')
     .max(20, 'Too Long!')
     .required('Required'),
 });
@@ -47,20 +52,26 @@ const SignUpSchema = Yup.object().shape({
     .max(20, 'Too Long!')
     .required('Required'),
   password: Yup.string()
-    .min(8, 'Too Short!')
+    .min(6, 'Too Short!')
     .max(20, 'Too Long!')
     .required('Required'),
   passwordCheck: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
     .required('Required'),
 });
+//#endregion
 
 export default function LoginModal({
   isModalVisible,
   setIsModalVisible,
   modalLabel,
 }: Props) {
+  const { login, setLoginCredentials } = useAuth();
   const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  const [isLoginSuccess, setIsLoginSuccess] = useState(false);
+  const [hasTriedLogin, setHasTriedLogin] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fadeIn = useCallback(() => {
     Animated.timing(fadeAnim, {
@@ -73,6 +84,35 @@ export default function LoginModal({
   const fadeOut = () => {
     fadeAnim.setValue(0);
   };
+  //"johnd"
+  //"m38rmF$"
+
+  const submitForm = useCallback(
+    (values: ILoginForm) => {
+      if (modalLabel === ModalEnum.signIn) {
+        setIsLoading(true);
+        getAuthUser({
+          username: values.username,
+          password: values.password,
+        })
+          .then((res) => {
+            setIsLoginSuccess(true);
+            const hash = bcrypt.hashSync(values.password, 10);
+            setLoginCredentials(values.username, hash);
+            login(res);
+            setIsLoading(false);
+            setIsModalVisible(false);
+          })
+          .catch(() => {
+            setIsLoginSuccess(false);
+            setIsLoading(false);
+          });
+        setHasTriedLogin(true);
+      } else {
+      }
+    },
+    [modalLabel]
+  );
 
   return (
     <Modal
@@ -84,9 +124,10 @@ export default function LoginModal({
       }}
       onShow={fadeIn}
     >
+      <LoadingView isVisible={isLoading} loadingText={''} />
       <Formik
         initialValues={{ username: '', password: '', passwordCheck: '' }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => submitForm(values)}
         validationSchema={
           modalLabel === ModalEnum.signIn ? SignInSchema : SignUpSchema
         }
@@ -213,6 +254,11 @@ export default function LoginModal({
                       onPress={(e) => handleSubmit(e)}
                       title={modalLabel}
                     />
+                    {hasTriedLogin && !isLoginSuccess ? (
+                      <Text style={{ color: colorStyles.error }}>
+                        Username or password is wrong!
+                      </Text>
+                    ) : null}
                   </View>
                 </View>
               </TouchableWithoutFeedback>

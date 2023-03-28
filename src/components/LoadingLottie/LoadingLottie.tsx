@@ -5,7 +5,7 @@ import { View } from 'react-native';
 
 export default function LoadingLottie() {
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.container}>
       <Lottie
         source={require('assets/lotties/hour-glass-orange.json')}
         style={styles.lottie}

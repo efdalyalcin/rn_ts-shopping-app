@@ -12,7 +12,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     zIndex: 99,
     backgroundColor: 'rgba(243, 239, 236, 0.8)',
-    // opacity: 0.7,
   },
   lottie: {
     width: 100,
@@ -20,5 +19,4 @@ export const styles = StyleSheet.create({
     opacity: 1,
     transform: [{ translateY: -25 }],
   },
-  // title: { fontSize: 20, fontWeight: '600' },
 });

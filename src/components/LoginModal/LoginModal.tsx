@@ -26,6 +26,7 @@ import { colorStyles } from 'src/styles/colors';
 import { ILoginForm, ModalEnum } from 'src/shared/modalInterfaces';
 import { getAuthUser } from 'src/services/getAuthUser';
 import useAuth from 'src/store/auth';
+import LoadingLottie from '../LoadingLottie/LoadingLottie';
 
 type Props = {
   isModalVisible: boolean;
@@ -112,6 +113,8 @@ export default function LoginModal({
     },
     [modalLabel]
   );
+
+  console.log('loading state ====> ', isLoading);
 
   return (
     <Modal
@@ -220,7 +223,9 @@ export default function LoginModal({
                       <>
                         <Text
                           style={
-                            touched.passwordCheck && errors.passwordCheck
+                            touched.passwordCheck &&
+                            errors.passwordCheck &&
+                            !isLoading
                               ? { fontSize: 12, color: colorStyles.error }
                               : {
                                   fontSize: 12,
@@ -265,6 +270,8 @@ export default function LoginModal({
           </View>
         )}
       </Formik>
+
+      {isLoading ? <LoadingLottie /> : null}
     </Modal>
   );
 }

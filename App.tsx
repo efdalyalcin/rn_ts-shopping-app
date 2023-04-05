@@ -23,7 +23,7 @@ export default function App() {
           name="Home"
           component={Home}
           options={{
-            title: 'Store',
+            title: 'ShopEase',
             headerTitleStyle: { fontSize: 30 },
           }}
         />
@@ -32,12 +32,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });

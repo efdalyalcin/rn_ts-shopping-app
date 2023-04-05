@@ -2,9 +2,6 @@ import { View, Text, Image } from 'react-native';
 import React from 'react';
 import { styles } from './CartCard.style';
 import { Shadow } from 'react-native-shadow-2';
-import NumericInput from 'react-native-numeric-input';
-import { colorStyles } from 'src/styles/colors';
-import useCart from 'src/store/cart';
 import { IProduct } from 'src/shared/productInterface';
 import CardButton from '../CardButton/CardButton';
 

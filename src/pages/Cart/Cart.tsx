@@ -1,9 +1,10 @@
 import { View, Text, FlatList, Pressable } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import useCart from 'src/store/cart';
 import CartCard from 'src/components/CartCard/CartCard';
 import { styles } from './Cart.style';
 import useAuth from 'src/store/auth';
+import LoginModal from 'src/components/LoginModal/LoginModal';
 
 const renderItem = ({ item }) => (
   <CartCard
@@ -16,8 +17,7 @@ const renderItem = ({ item }) => (
 export default function Cart() {
   const { cart, totalPrice } = useCart();
   const { isUserLoggedIn } = useAuth();
-
-  // on login open a modal for username and password, use formik or yup for that
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   return (
     <>
@@ -30,7 +30,12 @@ export default function Cart() {
       )}
       {!isUserLoggedIn ? (
         <View style={styles.container}>
-          <Pressable style={styles.buttons} onPress={() => {}}>
+          <Pressable
+            style={styles.buttons}
+            onPress={() => {
+              setIsModalVisible(true);
+            }}
+          >
             <Text style={styles.loginText}>Login</Text>
           </Pressable>
         </View>
@@ -42,6 +47,11 @@ export default function Cart() {
           </Pressable>
         </View>
       )}
+      <LoginModal
+        isModalVisible={isModalVisible}
+        setIsModalVisible={setIsModalVisible}
+        modalLabel="Sign in"
+      />
     </>
   );
 }

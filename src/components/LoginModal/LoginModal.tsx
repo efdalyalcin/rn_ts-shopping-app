@@ -114,8 +114,6 @@ export default function LoginModal({
     [modalLabel]
   );
 
-  console.log('loading state ====> ', isLoading);
-
   return (
     <Modal
       animationType="slide"

@@ -24,16 +24,16 @@ type Props = {
 export default function CardButton({ item, buttonHeight }: Props) {
   const { cart, addToCart, removeFromCart, insertAmount } = useCart();
 
+  const [productAmount, setProductAmount] = useState(
+    cart.find((product) => product.id === item.id)?.amount || 1
+  );
+
   let productInitial: number;
   useEffect(() => {
     productInitial = cart.find((product) => product.id === item.id)?.amount;
 
     setProductAmount(productInitial);
   }, [cart]);
-
-  const [productAmount, setProductAmount] = useState(
-    cart.find((product) => product.id === item.id)?.amount || 1
-  );
 
   const isProductInCart = cart.some(
     (cartItem: ICartItem) => cartItem.id === item.id
@@ -53,13 +53,8 @@ export default function CardButton({ item, buttonHeight }: Props) {
 
   return isProductInCart ? (
     <View>
-      {/* <TouchableOpacity>
-        <Text> - </Text>
-      </TouchableOpacity> */}
-
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        // style={styles.container}
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.inputButton}>

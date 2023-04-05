@@ -11,8 +11,6 @@ export default function Account() {
   const [isLoginVisible, setIsLoginVisible] = useState(false);
   const [isRegisterVisible, setIsRegisterVisible] = useState(false);
 
-  console.log('Logged in ===> ', isUserLoggedIn);
-
   const handleLogin = () => {
     setIsLoginVisible(true);
   };

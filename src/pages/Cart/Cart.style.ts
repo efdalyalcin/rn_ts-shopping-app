@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 30,
     backgroundColor: colorStyles.picker,
-    borderRadius: 8,
+    borderRadius: 20,
   },
   checkout: {
     backgroundColor: colorStyles.favorites,

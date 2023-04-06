@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Home from './src/pages/Home/Home';
 import { colorStyles } from 'src/styles/colors';
+import Checkout from 'src/pages/Checkout/Checkout';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -27,7 +28,14 @@ export default function App() {
             headerTitleStyle: { fontSize: 30 },
           }}
         />
-        {/* <Stack.Screen name="Players" component={Players} /> */}
+        <Stack.Screen
+          name="Checkout"
+          component={Checkout}
+          options={{
+            title: 'ShopEase - Checkout',
+            headerTitleStyle: { fontSize: 24 },
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

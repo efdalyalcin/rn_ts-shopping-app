@@ -124,7 +124,6 @@ export default function LoginModal({
       }}
       onShow={fadeIn}
     >
-      {/* <LoadingView isVisible={isLoading} loadingText={''} /> */}
       <Formik
         initialValues={{ username: '', password: '', passwordCheck: '' }}
         onSubmit={(values) => submitForm(values)}
@@ -191,7 +190,7 @@ export default function LoginModal({
                     </View>
                     <Text
                       style={
-                        touched.password && errors.password
+                        touched.password && errors.password && !isLoading
                           ? { fontSize: 12, color: colorStyles.error }
                           : {
                               fontSize: 12,
@@ -256,7 +255,7 @@ export default function LoginModal({
                       onPress={(e) => handleSubmit(e)}
                       title={modalLabel}
                     />
-                    {hasTriedLogin && !isLoginSuccess ? (
+                    {hasTriedLogin && !isLoginSuccess && !isLoading ? (
                       <Text style={{ color: colorStyles.error }}>
                         Username or password is wrong!
                       </Text>

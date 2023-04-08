@@ -32,7 +32,7 @@ export default function App() {
           name="Checkout"
           component={Checkout}
           options={{
-            title: 'ShopEase - Checkout',
+            title: 'ShopEase',
             headerTitleStyle: { fontSize: 24 },
           }}
         />

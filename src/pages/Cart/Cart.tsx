@@ -24,7 +24,8 @@ export default function Cart() {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleCheckout = () => {
-    // navigation.navigate('Checkout', { screen: Checkout });
+    //@ts-ignore
+    navigation.navigate('Checkout');
   };
 
   return (

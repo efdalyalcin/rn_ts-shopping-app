@@ -1,10 +1,28 @@
-import { View, Text } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import React from 'react';
+import { styles } from './Checkout.style';
+import useCart from 'src/store/cart';
+import { ICartItem } from 'src/shared/cartInterface';
+
+const renderItem = ({ item }: { item: ICartItem }) => {
+  // general layout
+
+  // 3 x price  --------  item name
+  // 2 x price ---- item name
+
+  // total 5 item total price 123841 TL
+  // pay button
+
+  // then a modal says it is a dummy app thanks for giving feedback and *****
+  return <Text>{item?.product?.price}</Text>;
+};
 
 export default function Checkout() {
+  const { cart, totalPrice, totalItems } = useCart();
   return (
-    <View>
-      <Text>Checkout</Text>
+    <View style={styles.container}>
+      <FlatList renderItem={renderItem} data={cart} />
+      <Text></Text>
     </View>
   );
 }

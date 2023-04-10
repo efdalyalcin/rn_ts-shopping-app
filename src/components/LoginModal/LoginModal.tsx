@@ -26,7 +26,7 @@ import { colorStyles } from 'src/styles/colors';
 import { ILoginForm, ModalEnum } from 'src/shared/modalInterfaces';
 import { getAuthUser } from 'src/services/getAuthUser';
 import useAuth from 'src/store/auth';
-import LoadingView from '../LoadingView/LoadingView';
+import LoadingLottie from '../LoadingLottie/LoadingLottie';
 
 type Props = {
   isModalVisible: boolean;
@@ -124,7 +124,6 @@ export default function LoginModal({
       }}
       onShow={fadeIn}
     >
-      <LoadingView isVisible={isLoading} loadingText={''} />
       <Formik
         initialValues={{ username: '', password: '', passwordCheck: '' }}
         onSubmit={(values) => submitForm(values)}
@@ -191,7 +190,7 @@ export default function LoginModal({
                     </View>
                     <Text
                       style={
-                        touched.password && errors.password
+                        touched.password && errors.password && !isLoading
                           ? { fontSize: 12, color: colorStyles.error }
                           : {
                               fontSize: 12,
@@ -221,7 +220,9 @@ export default function LoginModal({
                       <>
                         <Text
                           style={
-                            touched.passwordCheck && errors.passwordCheck
+                            touched.passwordCheck &&
+                            errors.passwordCheck &&
+                            !isLoading
                               ? { fontSize: 12, color: colorStyles.error }
                               : {
                                   fontSize: 12,
@@ -254,7 +255,7 @@ export default function LoginModal({
                       onPress={(e) => handleSubmit(e)}
                       title={modalLabel}
                     />
-                    {hasTriedLogin && !isLoginSuccess ? (
+                    {hasTriedLogin && !isLoginSuccess && !isLoading ? (
                       <Text style={{ color: colorStyles.error }}>
                         Username or password is wrong!
                       </Text>
@@ -266,6 +267,8 @@ export default function LoginModal({
           </View>
         )}
       </Formik>
+
+      {isLoading ? <LoadingLottie /> : null}
     </Modal>
   );
 }

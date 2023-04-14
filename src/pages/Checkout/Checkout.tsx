@@ -14,7 +14,14 @@ const renderItem = ({ item }: { item: ICartItem }) => {
   // pay button
 
   // then a modal says it is a dummy app thanks for giving feedback and *****
-  return <Text>{item?.product?.price}</Text>;
+  //${item?.product?.price} x
+  return (
+    <View>
+      <Text>{`${item?.amount} x ${item?.product?.title} = $${
+        item?.product?.price * item?.amount
+      }`}</Text>
+    </View>
+  );
 };
 
 export default function Checkout() {

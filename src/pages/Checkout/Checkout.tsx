@@ -3,6 +3,7 @@ import React from 'react';
 import { styles } from './Checkout.style';
 import useCart from 'src/store/cart';
 import { ICartItem } from 'src/shared/cartInterface';
+import CheckoutCard from 'src/components/CheckoutCard/CheckoutCard';
 
 const renderItem = ({ item }: { item: ICartItem }) => {
   // general layout
@@ -15,13 +16,7 @@ const renderItem = ({ item }: { item: ICartItem }) => {
 
   // then a modal says it is a dummy app thanks for giving feedback and *****
   //${item?.product?.price} x
-  return (
-    <View style={styles.itemContainer}>
-      <Text>{item?.amount}</Text>
-      <Image source={{ uri: item?.product?.image }} style={styles.image} />
-      {/* <Text>{item?.product?.title}</Text> */}
-    </View>
-  );
+  return <CheckoutCard item={item} />;
 };
 
 export default function Checkout() {

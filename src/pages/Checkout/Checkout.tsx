@@ -1,4 +1,4 @@
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, Image } from 'react-native';
 import React from 'react';
 import { styles } from './Checkout.style';
 import useCart from 'src/store/cart';
@@ -16,10 +16,10 @@ const renderItem = ({ item }: { item: ICartItem }) => {
   // then a modal says it is a dummy app thanks for giving feedback and *****
   //${item?.product?.price} x
   return (
-    <View>
-      <Text>{`${item?.amount} x ${item?.product?.title} = $${
-        item?.product?.price * item?.amount
-      }`}</Text>
+    <View style={styles.itemContainer}>
+      <Text>{item?.amount}</Text>
+      <Image source={{ uri: item?.product?.image }} style={styles.image} />
+      {/* <Text>{item?.product?.title}</Text> */}
     </View>
   );
 };

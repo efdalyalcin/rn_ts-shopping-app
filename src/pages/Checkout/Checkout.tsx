@@ -24,7 +24,9 @@ export default function Checkout() {
   return (
     <View style={styles.container}>
       <FlatList renderItem={renderItem} data={cart} />
-      <Text></Text>
+      <View style={styles.payment}>
+        <Text style={styles.totalPrice}>{totalPrice.toFixed(2)}</Text>
+      </View>
     </View>
   );
 }

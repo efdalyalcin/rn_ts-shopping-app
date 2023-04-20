@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
-import useAuth from 'src/store/auth';
+import useAuth from 'src/store/authStore';
 import LoginModal from '../LoginModal/LoginModal';
 import { ModalEnum } from 'src/shared/modalInterfaces';
 import { styles } from './Account.style';

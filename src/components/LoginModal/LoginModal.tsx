@@ -25,7 +25,7 @@ import PasswordIcon from 'assets/icons/password_filled.svg';
 import { colorStyles } from 'src/styles/colors';
 import { ILoginForm, ModalEnum } from 'src/shared/modalInterfaces';
 import { getAuthUser } from 'src/services/getAuthUser';
-import useAuth from 'src/store/auth';
+import useAuth from 'src/store/authStore';
 import LoadingLottie from '../LoadingLottie/LoadingLottie';
 
 type Props = {

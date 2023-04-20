@@ -7,7 +7,7 @@ import FavoriteIcon from 'assets/icons/favorite_filled.svg';
 // @ts-ignore
 import NotFavoriteIcon from 'assets/icons/favorite_outlined.svg';
 import { IProduct } from 'src/shared/productInterface';
-import useFavoriteProducts from 'src/store/favoriteProducts';
+import useFavoriteProducts from 'src/store/favoriteProductsStore';
 import CardButton from '../CardButton/CardButton';
 import { colorStyles } from 'src/styles/colors';
 import GestureRecognizer from 'react-native-swipe-gestures';

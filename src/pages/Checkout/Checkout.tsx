@@ -1,7 +1,7 @@
-import { View, Text, FlatList, Image, Pressable } from 'react-native';
+import { View, Text, FlatList, Pressable } from 'react-native';
 import React, { useState } from 'react';
 import { styles } from './Checkout.style';
-import useCart from 'src/store/cart';
+import useCart from 'src/store/cartStore';
 import { ICartItem } from 'src/shared/cartInterface';
 import CheckoutCard from 'src/components/CheckoutCard/CheckoutCard';
 import { Shadow } from 'react-native-shadow-2';
@@ -36,7 +36,7 @@ export default function Checkout() {
       <DummyApiModal
         isModalVisible={isModalVisible}
         setIsModalVisible={setIsModalVisible}
-        modalLabel="This is "
+        modalLabel="Sorry, but this is a fake API, you can't shop here!"
       />
     </>
   );

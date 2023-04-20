@@ -1,12 +1,11 @@
 import { View, Text, FlatList, Pressable } from 'react-native';
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import useCart from 'src/store/cart';
+import useCart from 'src/store/cartStore';
 import CartCard from 'src/components/CartCard/CartCard';
 import { styles } from './Cart.style';
-import useAuth from 'src/store/auth';
+import useAuth from 'src/store/authStore';
 import LoginModal from 'src/components/LoginModal/LoginModal';
-import Checkout from '../Checkout/Checkout';
 
 const renderItem = ({ item }) => (
   <CartCard

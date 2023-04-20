@@ -28,6 +28,7 @@
     "react-native-imaged-card-view": "^0.0.11",
     "react-native-numeric-input": "^1.9.1",
     "react-native-paper": "^5.0.1",
+    "react-native-ratings": "^8.1.0",
     "react-native-shadow-2": "^7.0.6",
     "react-native-star-review": "^0.0.23",
     "react-native-svg": "^13.4.0",

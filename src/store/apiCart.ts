@@ -1,3 +1,6 @@
+// this store is created for the fakestoreApi integration but it was not used in the app.
+// it is kept for further development
+
 import create from 'zustand';
 import { IProduct } from 'src/shared/productInterface';
 import AsyncStorage from '@react-native-async-storage/async-storage';

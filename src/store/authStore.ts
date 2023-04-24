@@ -1,7 +1,7 @@
 import { ILoginCredentials } from 'src/shared/userInterface';
 import create from 'zustand';
-import useCart from './cart';
-import useFavoriteProducts from './favoriteProducts';
+import useCart from './cartStore';
+import useFavoriteProducts from './favoriteProductsStore';
 
 type IAuthState = {
   isUserLoggedIn: boolean;

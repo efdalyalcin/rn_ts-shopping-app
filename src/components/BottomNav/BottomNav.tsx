@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BottomNavigation, Text } from 'react-native-paper';
 // @ts-ignore
 import ShopIcon from 'assets/icons/shopping_cart.png';
@@ -6,10 +6,11 @@ import Store from 'src/pages/Store/Store';
 import Favorites from 'src/pages/Favorites/Favorites';
 import Cart from 'src/pages/Cart/Cart';
 import Account from '../Account/Account';
+import useBottomNavIndex from 'src/store/bottomNavIndexStore';
 
 const BottomNav = () => {
-  const [index, setIndex] = React.useState(0);
-  const [routes] = React.useState([
+  const { index, setIndex } = useBottomNavIndex();
+  const [routes] = useState([
     {
       key: 'store',
       title: 'Store',

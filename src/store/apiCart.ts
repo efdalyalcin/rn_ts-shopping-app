@@ -1,10 +1,13 @@
+// this store is created for the fakestoreApi integration but it was not used in the app.
+// it is kept for further development
+
 import create from 'zustand';
 import { IProduct } from 'src/shared/productInterface';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { persist } from 'zustand/middleware';
 import { ICartProduct } from 'src/shared/cartInterface';
-import useAuth from './auth';
-import { getAllUser } from 'src/services/getUsers';
+import useAuth from './authStore';
+import { getAllUsers } from 'src/services/getUsers';
 import { IUser } from 'src/shared/userInterface';
 
 interface ICartState {
@@ -29,7 +32,7 @@ const useApiCart = create<ICartState>()(
         let users: IUser[] = [];
 
         if (isUserLoggedIn) {
-          getAllUser().then((res) => {
+          getAllUsers().then((res) => {
             users = res;
           });
         }

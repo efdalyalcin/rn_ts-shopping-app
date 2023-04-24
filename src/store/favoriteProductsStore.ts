@@ -1,5 +1,4 @@
 import create from 'zustand';
-import zustandFlipper from 'react-native-flipper-zustand';
 import { IProduct } from 'src/shared/productInterface';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { persist } from 'zustand/middleware';

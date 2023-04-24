@@ -1,6 +1,6 @@
 import { View, Text, ScrollView, FlatList } from 'react-native';
 import React from 'react';
-import useFavoriteProducts from 'src/store/favoriteProducts';
+import useFavoriteProducts from 'src/store/favoriteProductsStore';
 import ShopCard from 'src/components/ShopCard/ShopCard';
 import { styles } from './Favorites.style';
 

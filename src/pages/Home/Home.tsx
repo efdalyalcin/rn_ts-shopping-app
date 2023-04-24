@@ -5,7 +5,7 @@ import { Button, Card, Paragraph, Title } from 'react-native-paper';
 import BottomNav from '../../components/BottomNav/BottomNav';
 import { HeaderStyle } from '../../styles/header';
 import { getProducts } from 'src/services/getProducts';
-import useFavoriteProducts from 'src/store/favoriteProducts';
+import useFavoriteProducts from 'src/store/favoriteProductsStore';
 
 const height = Dimensions.get('screen').height - HeaderStyle.headerSize - 80;
 

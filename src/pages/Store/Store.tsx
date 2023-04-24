@@ -1,6 +1,6 @@
 import { View, Text, FlatList, Dimensions, Image } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import useFavoriteProducts from 'src/store/favoriteProducts';
+import useFavoriteProducts from 'src/store/favoriteProductsStore';
 import { Button, Card, Paragraph } from 'react-native-paper';
 import { getProducts } from 'src/services/getProducts';
 import { styles } from './Store.style';

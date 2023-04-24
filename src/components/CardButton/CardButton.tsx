@@ -11,7 +11,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import { styles } from './CardButton.style';
 import { IProduct } from 'src/shared/productInterface';
-import useCart from 'src/store/cart';
+import useCart from 'src/store/cartStore';
 import { ICartItem } from 'src/shared/cartInterface';
 import NumericInput from 'react-native-numeric-input';
 import { colorStyles } from 'src/styles/colors';

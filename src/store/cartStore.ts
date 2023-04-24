@@ -72,7 +72,7 @@ const useCart = create<ICartState>()(
 
           set(() => ({
             totalItems: get().totalItems + 1,
-            totalPrice: get().totalPrice + product.price,
+            totalPrice: Number(get().totalPrice) + product.price,
             cart: newCart,
           }));
         } else {

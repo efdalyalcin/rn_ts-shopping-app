@@ -89,8 +89,6 @@ export default function LoginModal({
   const fadeOut = () => {
     fadeAnim.setValue(0);
   };
-  //"johnd"
-  //"m38rmF$"
 
   const submitForm = useCallback(
     (values: ILoginForm) => {

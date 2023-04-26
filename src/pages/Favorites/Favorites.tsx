@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, FlatList } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import React from 'react';
 import useFavoriteProducts from 'src/store/favoriteProductsStore';
 import ShopCard from 'src/components/ShopCard/ShopCard';

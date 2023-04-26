@@ -10,6 +10,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Button,
+  Alert,
 } from 'react-native';
 import React, { useCallback, useRef, useState } from 'react';
 import { Formik } from 'formik';
@@ -22,11 +23,14 @@ import CloseIcon from 'assets/icons/close-circle-outline.svg';
 import AccountIcon from 'assets/icons/account_filled.svg';
 // @ts-ignore
 import PasswordIcon from 'assets/icons/password_filled.svg';
+// @ts-ignore
+import EmailIcon from 'assets/icons/email.svg';
 import { colorStyles } from 'src/styles/colors';
 import { ILoginForm, ModalEnum } from 'src/shared/modalInterfaces';
 import { getAuthUser } from 'src/services/getAuthUser';
 import useAuth from 'src/store/authStore';
 import LoadingLottie from '../LoadingLottie/LoadingLottie';
+import { registerUser } from 'src/services/registerUser';
 
 type Props = {
   isModalVisible: boolean;
@@ -51,6 +55,7 @@ const SignUpSchema = Yup.object().shape({
     .min(3, 'Too Short!')
     .max(20, 'Too Long!')
     .required('Required'),
+  email: Yup.string().email('Invalid email format').required('Required'),
   password: Yup.string()
     .min(6, 'Too Short!')
     .max(20, 'Too Long!')
@@ -84,8 +89,6 @@ export default function LoginModal({
   const fadeOut = () => {
     fadeAnim.setValue(0);
   };
-  //"johnd"
-  //"m38rmF$"
 
   const submitForm = useCallback(
     (values: ILoginForm) => {
@@ -109,6 +112,17 @@ export default function LoginModal({
           });
         setHasTriedLogin(true);
       } else {
+        const hash = bcrypt.hashSync(values.password, 10);
+        registerUser(values.username, values.email, hash);
+        Alert.alert('User Created', 'Login Completed', [
+          {
+            text: 'OK',
+            onPress: () => {
+              setIsModalVisible(false);
+              login('randomLoginTokenSinceFakeAPI');
+            },
+          },
+        ]);
       }
     },
     [modalLabel]
@@ -125,7 +139,12 @@ export default function LoginModal({
       onShow={fadeIn}
     >
       <Formik
-        initialValues={{ username: '', password: '', passwordCheck: '' }}
+        initialValues={{
+          username: '',
+          email: '',
+          password: '',
+          passwordCheck: '',
+        }}
         onSubmit={(values) => submitForm(values)}
         validationSchema={
           modalLabel === ModalEnum.signIn ? SignInSchema : SignUpSchema
@@ -188,6 +207,40 @@ export default function LoginModal({
                         placeholder="username"
                       />
                     </View>
+                    {
+                      // register email check
+                      modalLabel === ModalEnum.register ? (
+                        <>
+                          <Text
+                            style={
+                              touched.email && errors.email && !isLoading
+                                ? { fontSize: 12, color: colorStyles.error }
+                                : {
+                                    fontSize: 12,
+                                    color: colorStyles.error,
+                                    opacity: 0,
+                                  }
+                            }
+                          >
+                            {errors.email}
+                          </Text>
+                          <View style={styles.inputBlock}>
+                            <EmailIcon
+                              fill={colorStyles.text}
+                              width={24}
+                              height={24}
+                            />
+                            <TextInput
+                              onChangeText={handleChange('email')}
+                              onBlur={handleBlur('email')}
+                              value={values.email}
+                              style={styles.textInput}
+                              placeholder="email"
+                            />
+                          </View>
+                        </>
+                      ) : null
+                    }
                     <Text
                       style={
                         touched.password && errors.password && !isLoading
@@ -216,40 +269,43 @@ export default function LoginModal({
                         placeholder="password"
                       />
                     </View>
-                    {modalLabel === ModalEnum.register ? (
-                      <>
-                        <Text
-                          style={
-                            touched.passwordCheck &&
-                            errors.passwordCheck &&
-                            !isLoading
-                              ? { fontSize: 12, color: colorStyles.error }
-                              : {
-                                  fontSize: 12,
-                                  color: colorStyles.error,
-                                  opacity: 0,
-                                }
-                          }
-                        >
-                          {errors.passwordCheck}
-                        </Text>
-                        <View style={styles.inputBlock}>
-                          <PasswordIcon
-                            fill={colorStyles.text}
-                            width={24}
-                            height={24}
-                          />
-                          <TextInput
-                            secureTextEntry
-                            onChangeText={handleChange('passwordCheck')}
-                            onBlur={handleBlur('passwordCheck')}
-                            value={values.passwordCheck}
-                            style={styles.textInput}
-                            placeholder="Retype password"
-                          />
-                        </View>
-                      </>
-                    ) : null}
+                    {
+                      // register password check
+                      modalLabel === ModalEnum.register ? (
+                        <>
+                          <Text
+                            style={
+                              touched.passwordCheck &&
+                              errors.passwordCheck &&
+                              !isLoading
+                                ? { fontSize: 12, color: colorStyles.error }
+                                : {
+                                    fontSize: 12,
+                                    color: colorStyles.error,
+                                    opacity: 0,
+                                  }
+                            }
+                          >
+                            {errors.passwordCheck}
+                          </Text>
+                          <View style={styles.inputBlock}>
+                            <PasswordIcon
+                              fill={colorStyles.text}
+                              width={24}
+                              height={24}
+                            />
+                            <TextInput
+                              secureTextEntry
+                              onChangeText={handleChange('passwordCheck')}
+                              onBlur={handleBlur('passwordCheck')}
+                              value={values.passwordCheck}
+                              style={styles.textInput}
+                              placeholder="Retype password"
+                            />
+                          </View>
+                        </>
+                      ) : null
+                    }
                     <Button
                       /* @ts-ignore*/
                       onPress={(e) => handleSubmit(e)}

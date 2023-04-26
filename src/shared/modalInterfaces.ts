@@ -5,6 +5,7 @@ export enum ModalEnum {
 
 export interface ILoginForm {
   username: string;
+  email?: string;
   password: string;
   passwordCheck?: string;
 }

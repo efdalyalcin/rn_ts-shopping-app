@@ -1,7 +1,9 @@
 {
   "expo": {
-    "name": "rn_ts-shopping-app",
+    "name": "ShopEase",
     "slug": "rn_ts-shopping-app",
+    "privacy": "public",
+    "description": "It is a simple mock shopping app to imitate a shopping experience",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "assets/icons/icon.png",
@@ -16,16 +18,23 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "ShopEase"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "assets/icons/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.efdalyalcin.ShopEase"
     },
     "web": {
       "favicon": "assets/icons/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c59ade5b-ae0a-48b7-b518-396e26be20d1"
+      }
     }
   }
 }
